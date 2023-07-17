@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  configura-migration-e-admin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      sh -c "poetry run python manage.py migrate --noinput &&
+             poetry run python manage.py createsuperuser --noinput"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env.compose
+    environment:
+      IS_DOCKER_COMPOSE: True
+
+  aplicacao:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env.compose
+    environment:
+      IS_DOCKER_COMPOSE: True
+    volumes: [ .:/code ]
+
+  db:
+    image: postgres:15.3
+    volumes:
+      - ./infra/database/init_scripts:/docker-entrypoint-initdb.d/
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env.compose
+    environment:
+      POSTGRES_DB: $$DATABASE_NAME
+      POSTGRES_USER: $$DATABASE_USER
+      POSTGRES_PASSWORD: $$DATABASE_PASSWORD
+      PGPASSWORD: $$DATABASE_PASSWORD
+    healthcheck:
+      test: [ "CMD-SHELL", "psql -U $$DATABASE_USER -d $$DATABASE_NAME -c '\\q' || exit 1" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+      start_period: 10s

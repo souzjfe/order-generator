@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "order-generator"
+version = "0.1.0"
+description = ""
+authors = ["Jeferson <souzajefison@gmail.com>"]
+readme = "README.md"
+packages = [{include = "ordergenerator"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.3"
+python-dotenv = "^1.0.0"
+psycopg2-binary = "^2.9.6"
+reportlab = "^4.0.4"
+django-modeladmin-reorder = "^0.3.1"
+weasyprint = "^59.0"
+svglib = "^1.5.1"
+
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "ordergenerator.settings"
