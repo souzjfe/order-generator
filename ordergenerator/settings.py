@@ -38,12 +38,13 @@ SECRET_KEY = "django-insecure-jl%u1m$ifn-8mnsj))=@h*h$o3)t+rl#)nxr-bp(ge5$8z(p!k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not IS_PRODUCTION
 
-ALLOWED_HOSTS = ["orc.inviosat.com", "orc.segmart.com.br"]
-
-
+ALLOWED_HOSTS = ["orc.inviosat.com", "orc.segmart.com.br", "localhost", "127.0.0.1"]
+ADMIN_INTERFACE = 'flat-responsive'
 # Application definition
 
 INSTALLED_APPS = [
+    "admin_interface",
+    "colorfield",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -142,6 +143,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = 'static_root/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
