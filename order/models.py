@@ -8,7 +8,6 @@ class Order(models.Model):
         verbose_name_plural = 'Orçamentos'
         ordering = ['-created_at']
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Cliente')
-    leased_equipment = models.BooleanField(verbose_name='Equipamento alugado')
     monthly_fee = models.DecimalField(blank=True, max_digits=10, decimal_places=2, verbose_name='Valor mensalidade')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Data de emissão')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Data de atualização')
@@ -24,6 +23,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Orçamento')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Produto')
     quantity = models.PositiveIntegerField(verbose_name='Quantidade')
+    leased_equipment = models.BooleanField(verbose_name='Equipamento alugado')
 
     def __str__(self):
         return f"Orçamento #{self.order.pk} - {self.product.name}"

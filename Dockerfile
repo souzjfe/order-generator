@@ -16,4 +16,5 @@ RUN poetry install --no-interaction --no-ansi
 # Copia o restante do código do projeto
 
 # Comando padrão para executar o projeto
+CMD poetry install
 CMD poetry run python manage.py runserver 0.0.0.0:8000

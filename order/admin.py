@@ -13,8 +13,8 @@ class OrderItemInline(admin.TabularInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     
-    list_display = ('customer', 'created_at', 'updated_at', 'download_pdf' )
-    fields = ('customer', 'leased_equipment', 'monthly_fee')
+    list_display = ('customer', 'created_at', 'updated_at', 'download_pdf', 'whatsapp_button')
+    fields = ('customer', 'monthly_fee')
     inlines = [OrderItemInline]
     actions = ['generete_pdf']
     
@@ -28,7 +28,23 @@ class OrderAdmin(admin.ModelAdmin):
             reverse('/order/{}/pdf/'.format(order.pk))
             
     generete_pdf.short_description = 'Baixar selecionados em PDF'
+    # def send_via_whatsapp(self, request, queryset):
+    #     # Lógica para enviar via WhatsApp
+    #     for order in queryset:
+    #         whatsapp_url = 'https://api.whatsapp.com/send?phone=SEUNUMERO&text=' + urllib.parse.quote(f"Olá, segue o PDF do pedido {order.pk}: {request.build_absolute_uri(reverse('nome_da_view_do_pdf', args=[order.pk]))}")
+    #         return format_html('<a class="button" href="{}" target="_blank">Enviar via WhatsApp</a>', whatsapp_url)
+    
+    # send_via_whatsapp.short_description = 'Enviar via WhatsApp'
 
+    def whatsapp_button(self, obj):
+        if obj.customer.phone:
+            phone = obj.customer.phone
+            pdf_url = f'/order/{obj.pk}/pdf/'  # Substitua pela sua URL real de download do PDF
+            message = f'Olá, estou interessado no pedido #{obj.pk}. Aqui está o link para o PDF: {pdf_url}'
+            url = f'https://api.whatsapp.com/send?phone={phone}&text={message}'
+            return format_html('<a class="button" target="_blank" href="{}">Iniciar WhatsApp</a>', url)
+        return '-'
+    whatsapp_button.short_description = 'WhatsApp'
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
         if not change:

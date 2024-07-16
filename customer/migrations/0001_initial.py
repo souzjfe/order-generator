@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ),
                 ("name", models.CharField(max_length=255, verbose_name="Nome")),
                 (
-                    "address",
+                    "street",
                     models.CharField(
                         blank=True, max_length=255, verbose_name="Endereço"
                     ),
