@@ -14,7 +14,7 @@ class OrderItemInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     
     list_display = ('customer', 'created_at', 'updated_at', 'download_pdf', 'whatsapp_button')
-    fields = ('customer', 'monthly_fee')
+    fields = ('customer', 'monthly_fee', 'maximum_installments', 'cash_discount_percentage')
     inlines = [OrderItemInline]
     actions = ['generete_pdf']
     

@@ -8,7 +8,9 @@ class Order(models.Model):
         verbose_name_plural = 'Orçamentos'
         ordering = ['-created_at']
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Cliente')
-    monthly_fee = models.DecimalField(blank=True, max_digits=10, decimal_places=2, verbose_name='Valor mensalidade')
+    monthly_fee = models.DecimalField(blank=True, default=0, max_digits=10, decimal_places=2, verbose_name='Valor mensalidade')
+    maximum_installments = models.PositiveIntegerField(blank=True, default=1, verbose_name='Número máximo de parcelas')
+    cash_discount_percentage = models.DecimalField(blank=True, default=0, max_digits=5, decimal_places=2, verbose_name='Desconto à vista (%)')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Data de emissão')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Data de atualização')
     verbose_name = 'Orçamento'
