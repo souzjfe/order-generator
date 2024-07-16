@@ -19,6 +19,6 @@ from django.urls import path
 from order.views import GeneratePDF
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
     path('order/<int:order_id>/pdf/', GeneratePDF.as_view(), name='generate_pdf'),
+    path("", admin.site.urls),
 ]

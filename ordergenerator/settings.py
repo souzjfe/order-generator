@@ -38,7 +38,7 @@ SECRET_KEY = "django-insecure-jl%u1m$ifn-8mnsj))=@h*h$o3)t+rl#)nxr-bp(ge5$8z(p!k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not IS_PRODUCTION
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["orc.inviosat.com", "orc.segmart.com.br"]
 
 
 # Application definition

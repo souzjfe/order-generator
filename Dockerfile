@@ -1,20 +1,18 @@
 FROM python:3.11-slim
 
-# Instala o Poetry
+RUN apt-get update \
+    && apt-get install -y \
+       libcairo2 \
+       libpango-1.0-0 \
+       libpangocairo-1.0-0 \
+       libgirepository1.0-dev
+
 RUN pip install poetry
 
-# Configura o ambiente de trabalho
 WORKDIR /code
 
-# Copia os arquivos de definição do projeto
-COPY pyproject.toml poetry.lock /code/
+COPY pyproject.toml /code/
 
 COPY . /code/
-# Instala as dependências do projeto
+
 RUN poetry install --no-interaction --no-ansi
-
-# Copia o restante do código do projeto
-
-# Comando padrão para executar o projeto
-CMD poetry install
-CMD poetry run python manage.py runserver 0.0.0.0:8000
