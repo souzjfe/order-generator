@@ -38,6 +38,7 @@ SECRET_KEY = "django-insecure-jl%u1m$ifn-8mnsj))=@h*h$o3)t+rl#)nxr-bp(ge5$8z(p!k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not IS_PRODUCTION
 
+CSRF_TRUSTED_ORIGINS = ['https://orc.inviosat.com', 'https://orc.segmart.com.br']
 ALLOWED_HOSTS = ["orc.inviosat.com", "orc.segmart.com.br", "localhost", "127.0.0.1"]
 ADMIN_INTERFACE = 'flat-responsive'
 # Application definition
@@ -70,6 +71,9 @@ MIDDLEWARE = [
     "django.middleware.locale.LocaleMiddleware",
     "admin_reorder.middleware.ModelAdminReorder",
 ]
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
 
 
 ROOT_URLCONF = "ordergenerator.urls"
