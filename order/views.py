@@ -9,7 +9,7 @@ class GeneratePDF(View):
     def get(self, request, *args, **kwargs):
         order_id = kwargs.get('order_id')
         order = Order.objects.get(id=order_id)
-        order_items = OrderItem.objects.filter(order=order)
+        order_items = sorted(OrderItem.objects.filter(order=order), key=lambda item: item.product.name )
         total_amount = sum([
             item.product.price * item.quantity 
             for item in order_items 

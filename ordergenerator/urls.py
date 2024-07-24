@@ -17,8 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from order.views import GeneratePDF
+from product.admin import ProductAutocomplete
+from customer.admin import CustomerAutocomplete
 
 urlpatterns = [
     path('order/<int:order_id>/pdf/', GeneratePDF.as_view(), name='generate_pdf'),
     path("", admin.site.urls),
+    path('auto/product/', ProductAutocomplete.as_view(), name='product-autocomplete'),
+    path('auto/customer/', CustomerAutocomplete.as_view(), name='customer-autocomplete'),
 ]
