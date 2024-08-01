@@ -5,6 +5,7 @@ from django.utils.html import format_html
 from product.models import Product
 from .models import Order, OrderItem
 from django.urls import reverse
+import common
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
@@ -12,7 +13,7 @@ class OrderItemInline(admin.TabularInline):
     autocomplete_fields = ['product']
 
 @admin.register(Order)
-class OrderAdmin(admin.ModelAdmin):
+class OrderAdmin(common.ModelAdminCompanyRestriction):
     
     list_display = ('customer', 'created_at', 'updated_at', 'download_pdf', 'whatsapp_button')
     fields = ('customer', 'monthly_fee', 'maximum_installments', 'cash_discount_percentage', )

@@ -1,0 +1,1 @@
+from .model_admin_company_restriction import ModelAdminCompanyRestriction

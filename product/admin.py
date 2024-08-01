@@ -1,4 +1,3 @@
-# product/admin.py
 from django.urls import path
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -20,7 +19,7 @@ class ProductImportForm(forms.Form):
     file = forms.FileField(label="Selecione a planilha no formato XLSX")
 
 @admin.register(Product)
-class ProductAdmin(common.model_admin_company_restriction.ModelAdminCompanyRestriction):
+class ProductAdmin(common.ModelAdminCompanyRestriction):
     search_fields = ['name']
     list_display = ('name', 'price', 'created_at', 'updated_at')
     fields = ('name', 'description', 'price')
