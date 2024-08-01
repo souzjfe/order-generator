@@ -42,7 +42,6 @@ CSRF_TRUSTED_ORIGINS = ['https://orc.inviosat.com', 'https://orc.segmart.com.br'
 ALLOWED_HOSTS = ["orc.inviosat.com", "orc.segmart.com.br", "localhost", "127.0.0.1"]
 ADMIN_INTERFACE = 'flat-responsive'
 # Application definition
-
 INSTALLED_APPS = [
     "admin_interface",
     "colorfield",
@@ -58,8 +57,11 @@ INSTALLED_APPS = [
     "customer",
     "order",
     "product",
+    "company",
+    "account",
 ]
 
+AUTH_USER_MODEL = 'account.CustomUser'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -160,7 +162,10 @@ INTERNAL_IPS = ["127.0.0.1"]
 
 ADMIN_REORDER = (
     # Rename app
-    {'app': 'auth', 'label': 'Gestão de usuários'},
+    {'app': 'auth', 'label': 'Gestão de usuários', "models": (
+        "account.CustomUser",
+        "auth.Group"
+    )},
 
     # Reorder app models
     {'app': 'order', 'label': 'Sistema', "models": (

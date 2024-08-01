@@ -12,6 +12,7 @@ class Customer(models.Model):
     neighborhood = models.CharField(max_length=255, blank=True, verbose_name='Bairro')
     phone = models.CharField(max_length=15, blank=True, verbose_name='Telefone')  
     cpf_cnpj = models.CharField(max_length=18, blank=True, verbose_name='CPF/CNPJ') 
+    company = models.ForeignKey('company.Company', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Empresa')
 
     def __str__(self):
         return self.name
