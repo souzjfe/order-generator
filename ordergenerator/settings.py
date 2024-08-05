@@ -164,7 +164,8 @@ ADMIN_REORDER = (
     # Rename app
     {'app': 'auth', 'label': 'Gestão de usuários', "models": (
         "account.CustomUser",
-        "auth.Group"
+        "auth.Group",
+        "company.Company"
     )},
 
     # Reorder app models

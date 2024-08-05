@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.db import models
 
-
 class ModelAdminCompanyRestriction(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if not obj.company:

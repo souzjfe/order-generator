@@ -6,6 +6,7 @@ class Company(models.Model):
         verbose_name_plural = 'Empresas'
         ordering = ['cidade']
     cidade = models.CharField(max_length=255, verbose_name='Cidade')
+    owner = models.CharField(max_length=255, verbose_name='Responsável (Nome que será apresentado no orçamento)')
     contact = models.CharField(max_length=255, verbose_name='Contato')
     address = models.TextField(verbose_name='Endereço')
     cnpj = models.CharField(max_length=18, unique=True, verbose_name='CNPJ')
