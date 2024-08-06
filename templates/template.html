@@ -135,8 +135,8 @@
     <main>
         <section>
             <div>
-                <p>Jair de Souza</p>
-                <p>CNPJ: 10.243.551/0001-30</p>
+                <p>{{ company.owner }}</p>
+                <p>{{ company.cnpj }}</p>
             </div>
         </section>
         <section>
@@ -154,9 +154,9 @@
 </footer>
 <header>
     <div>
-        <p>CNPJ: 10.243.551/0001-30</p>
-        <p>Telefone: (46) 3524-4148</p>
-        <p>Endereço: AV. Antônio Sílvio Berbierri Nº2346</p>
+        <p>CNPJ: {{ company.cnpj }}</p>
+        <p>Telefone: {{ company.contact }}</p>
+        <p>Endereço: {{ company.address }}</p>
     </div>
     <svg
         width="269.3671"
@@ -256,7 +256,7 @@
 <body>
     <div class="title">
         <h1>Orçamento</h1>
-        <span>
+        <span class="text-right">
             <p>Data de emissão: {{ order.created_at }}</p>
             <p>Validade: 30 dias após emissão</p>
         </span>

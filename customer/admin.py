@@ -1,8 +1,5 @@
 # admin.py
 from django.contrib import admin
-from django.urls import reverse
-from django.utils.html import format_html
-from django.utils.safestring import mark_safe
 from customer.models import Customer
 from django.contrib.admin.views.autocomplete import AutocompleteJsonView
 import common
@@ -20,5 +17,5 @@ class CustomerAdmin(common.ModelAdminCompanyRestriction):
     class Media:
         js = (
             'js/fetch_address.js',  # Seu script personalizado, se houver
-            'js/input_mask.js',  # Configurações de máscara inputmask
+            'js/input_mask_customer.js',  # Configurações de máscara inputmask
         )

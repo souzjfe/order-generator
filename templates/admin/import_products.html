@@ -4,6 +4,9 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="button">Importar</button>
+    <div class="submit-row">
+    
+        <input type="submit" value="Importar" class="default" name="_save">
 </form>
 {% endblock %}
+</div>

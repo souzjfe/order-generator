@@ -1,12 +1,9 @@
-// static/js/inputmask_config.js
 document.addEventListener('DOMContentLoaded', function() {
-  // Aplicando máscara para CPF e CNPJ
   document.getElementById('id_cnpj').addEventListener('input', function() {
       var value = this.value.replace(/\D/g, '');
       this.value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
       
   });
-
   document.getElementById('id_contact').addEventListener('input', function(e) {
     var value = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
     var formattedValue = '';
@@ -32,18 +29,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     this.value = formattedValue.trim(); // Atualiza o valor do campo, removendo espaços extras
-  });
-
-
-
-  // Aplicando máscara para CEP
-  document.getElementById('id_zip_code').addEventListener('input', function() {
-    var value = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
-    if (value.length > 5) {
-        this.value = value.substring(0, 5) + '-' + value.substring(5, 8); // Formatação do CEP
-    } else {
-        this.value = value; // Mantém o valor sem formatação se não houver 8 dígitos
-    }
   });
 });

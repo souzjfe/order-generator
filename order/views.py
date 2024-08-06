@@ -16,12 +16,16 @@ class GeneratePDF(View):
             if not item.leased_equipment
         ])
         has_leased_equipment = any(item.leased_equipment for item in order_items)
+
+        company = request.user.company
+        print(request.user.company.owner)
         # Renderiza o template HTML com os dados
         context = {
             'order': order,
             'order_items': order_items,
             'total_amount': total_amount,
             'has_leased_equipment': has_leased_equipment,
+            'company': company,
         }
         template = get_template('template.html')
         html_content = template.render(context)

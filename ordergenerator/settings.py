@@ -40,20 +40,20 @@ DEBUG = not IS_PRODUCTION
 
 CSRF_TRUSTED_ORIGINS = ['https://orc.inviosat.com', 'https://orc.segmart.com.br']
 ALLOWED_HOSTS = ["orc.inviosat.com", "orc.segmart.com.br", "localhost", "127.0.0.1"]
-ADMIN_INTERFACE = 'flat-responsive'
+# ADMIN_INTERFACE = 'flat-responsive'
 # Application definition
 INSTALLED_APPS = [
     "admin_interface",
     "colorfield",
-    "django.contrib.admin",
+    # "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "ordergenerator.apps.AdminConfigReorder",
     'openpyxl',
     "mathfilters",
-    'admin_reorder',
     "customer",
     "order",
     "product",
@@ -62,7 +62,8 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'account.CustomUser'
-
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -72,7 +73,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.locale.LocaleMiddleware",
-    "admin_reorder.middleware.ModelAdminReorder",
 ]
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
@@ -160,18 +160,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 INTERNAL_IPS = ["127.0.0.1"]
 
-ADMIN_REORDER = (
-    # Rename app
-    {'app': 'auth', 'label': 'Gestão de usuários', "models": (
-        "account.CustomUser",
-        "auth.Group",
-        "company.Company"
-    )},
-
-    # Reorder app models
-    {'app': 'order', 'label': 'Sistema', "models": (
-        "order.Order", 
-        "customer.Customer", 
-        "product.Product"
-    )}
-)
